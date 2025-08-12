@@ -1,7 +1,7 @@
 # L1Farm Database
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-[![Citation](https://img.shields.io/badge/Publication-In%20Preparation-lightgrey)](https://doi.org/YOUR_PAPER_DOI)
+[![Citation](https://img.shields.io/badge/Publication-In%20Preparation-lightgrey)](https://doi.org/PAPER_DOI)
 
 This repository contains the official datasets for **L1Farm**, a comprehensive database of LINE-1 (L1) retrotransposon annotations. These datasets were generated as part of the study published in the *Journal of Genetics and Genomics*.
 
