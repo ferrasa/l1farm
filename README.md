@@ -78,117 +78,72 @@ This script will answer the question: **"What are the nucleotide sequences of th
 ### Prerequisites
 -   **Python 3** with the following libraries installed:
     -   `pandas`: For easy data manipulation (`pip install pandas`).
-    -   `pysam`: A powerful library for reading genomic data files like FASTA and BAM (`pip install pysam`).
+    -   `pysam`: A powerful library for reading genomic data files (`pip install pysam`).
 -   A **reference genome file** in FASTA format (e.g., `hg38.fa`).
--   The FASTA file must be **indexed** by `samtools faidx` (`samtools faidx hg38.fa`), which creates an `.fai` file.
+-   The FASTA file must be **indexed** by `samtools faidx` (`samtools faidx hg38.fa`), which creates a corresponding `.fai` file.
 
-### Step 1: Prepare Your Environment
+### Step 1: Download the Script and Data
 
-Ensure you have the L1Farm TSV file (`L1Farm_FLL1_HC_HG38.tsv`) and your indexed genome (`hg38.fa` and `hg38.fa.fai`) in your working directory.
+To begin, you need the example script and the L1Farm data files on your local machine.
 
-### Step 2: Python Script to Extract Sequences
+1.  Click the green **`Code`** button at the top of this page and select **`Download ZIP`**.
+2.  Unzip the downloaded file. This will create a folder containing all the L1Farm `.tsv` files and the Python script `extract_l1_sequences.py`.
 
-Create a Python script named `extract_l1_sequences.py` with the following content:
+Alternatively, if you have Git installed, you can clone the repository:
+```sh
+git clone https://github.com/ferrasa/l1farm.git
+```
+Navigate into the `l1farm` directory.
+
+### Step 2: Configure the Script
+
+Before running the script, you may need to edit its configuration variables to match your file names and analysis parameters.
+
+Open the `extract_l1_sequences.py` file in a text editor and check the following variables at the top:
 
 ```python
-import pandas as pd
-import pysam
-
 # --- Configuration ---
 L1FARM_FILE = 'L1Farm_FLL1_HC_HG38.tsv'
 GENOME_FASTA = 'hg38.fa'
 TARGET_CHROMOSOME = 'chrX'
 TARGET_SUBFAMILY = 'L1HS'
-LIMIT = 5 # Number of sequences to extract
-
-# --- Column names for the FL-L1 dataset ---
-# A simplified list for this example
-COLUMN_NAMES = ['Chromosome', 'Start', 'End', 'Subfamily']
-
-def extract_l1_sequences():
-    """
-    Loads L1Farm data, filters it, and extracts corresponding DNA sequences
-    from a reference FASTA file.
-    """
-    # 1. Load the L1Farm data
-    try:
-        df = pd.read_csv(L1FARM_FILE, sep='\t', header=None, usecols=, names=COLUMN_NAMES)
-    except FileNotFoundError:
-        print(f"Error: L1Farm file not found at '{L1FARM_FILE}'")
-        return
-
-    # 2. Filter for the L1 elements of interest
-    filtered_df = df[
-        (df['Chromosome'] == TARGET_CHROMOSOME) &
-        (df['Subfamily'] == TARGET_SUBFAMILY)
-    ].head(LIMIT)
-
-    if filtered_df.empty:
-        print(f"No elements found for {TARGET_SUBFAMILY} on {TARGET_CHROMOSOME}.")
-        return
-
-    print(f"Found {len(filtered_df)} elements to extract. Retrieving sequences...")
-
-    # 3. Open the indexed genome FASTA file
-    try:
-        fasta_file = pysam.FastaFile(GENOME_FASTA)
-    except FileNotFoundError:
-        print(f"Error: Genome FASTA file not found at '{GENOME_FASTA}'.")
-        print("Please ensure the file exists and is indexed (`samtools faidx`).")
-        return
-
-    # 4. Iterate through the filtered elements and fetch sequences
-    for index, row in filtered_df.iterrows():
-        chrom = row['Chromosome']
-        start = row['Start'] - 1  # Convert to 0-based index for pysam
-        end = row['End']
-        
-        # Fetch the sequence
-        sequence = fasta_file.fetch(chrom, start, end)
-        
-        # Prepare a FASTA header for the output
-        fasta_header = f">L1HS_element_{index+1} | location={chrom}:{start+1}-{end}"
-        
-        print("\n" + fasta_header)
-        # Print sequence in lines of 60 characters for readability
-        for i in range(0, len(sequence), 60):
-            print(sequence[i:i+60])
-
-    # Clean up
-    fasta_file.close()
-
-if __name__ == '__main__':
-    extract_l1_sequences()
+LIMIT = 5 
 ```
+-   Ensure `L1FARM_FILE` points to the correct L1Farm dataset you want to analyze.
+-   Ensure `GENOME_FASTA` matches the name of your indexed reference genome file.
+-   You can change `TARGET_CHROMOSOME`, `TARGET_SUBFAMILY`, and `LIMIT` to customize your analysis.
 
 ### Step 3: Run the Script and Interpret the Output
 
-Execute the script from your terminal:
+Once the script is configured, execute it from your terminal from within the repository's directory:
 ```bash
 python extract_l1_sequences.py
 ```
-
 The script will produce output in FASTA format, ready to be saved to a file or piped into other bioinformatics tools (like BLAST, MEME for motif discovery, etc.).
 
 **Example Output:**
 
 ```
+
 Found 5 elements to extract. Retrieving sequences...
 
->L1HS_element_1 | location=chrX:18568102-18574120
-GGAGTTCCGCGTCCTCAGCCGGGAGTTCACCGGTCGCTGGAGTTCGAGGACAGCCTGGGC
-AACGTGGTGAAACCCCGTCTCTACTAAAAATACAAAAAATTAGCCGGGTGTGGTGGCGGG
+>L1HS_element_1 | location=chrX:141421229-141427248
+attatactctaagttttagggtacatgtgcacattgtgcaggttagttacatatgtatac
+atgtgccatgctggtgcgctgcacccactaatgtgtcatctagcattaggtatatctccc
 ...
 
->L1HS_element_2 | location=chrX:22497880-22503901
-CCTGGGTGACAGAGCGAGACCCTGTCTCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-GCTGGAGTGCGGTGGCGCGATCTCGGCTCACTGCAACCTCCGCCTCCTGGGTTCAAGCGA
+>L1HS_element_2 | location=chrX:11707248-11713267
+Ggggggaggagccaagatggccgaataggaacagctccggtctacagctcccagcgtgag
+cgacgcagaagacggtgatttctgcatttccatctgaggtaccgggttcatctcactagg
 ...
 
 (Output will continue for all 5 elements)
 ```
 
 This example clearly demonstrates how the coordinate information in the L1Farm database can be programmatically used to perform powerful, sequence-level analyses.
+
+
+---
 
 ## Associated Software
 
