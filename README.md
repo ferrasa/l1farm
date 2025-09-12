@@ -69,7 +69,7 @@ You can download the entire database by:
 
 ---
 
-## Usage Example: Extracting L1 Sequences with a Python Script
+## Usage Example: extracting L1 sequences with a Python script
 
 A common task in genomics is to move from annotation to sequence-level analysis. This example demonstrates how to use the L1Farm database to extract the actual DNA sequences of specific L1 elements from a reference genome FASTA file.
 
