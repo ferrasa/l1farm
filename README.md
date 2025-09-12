@@ -37,9 +37,15 @@ This specifies the source genome for the annotations:
 
 ---
 
-## Data Structure and Columns
+## Data Formats and Structure
 
-All `.tsv` files share a similar structure. The following 12 columns describe the annotations for the region-level datasets (`RG-L1` and `AR-L1`). Full-length datasets (`FL-L1` and `AF-L1`) contain a subset of these columns, primarily describing the overall element.
+To ensure maximum compatibility with a wide range of bioinformatics tools and workflows, the L1Farm database is provided in three distinct formats, organized into separate directories within this repository:
+
+### 1. **TSV Format** (`/` directory)
+
+This is the original, full-detail data format. These tab-separated files contain all 12 columns of metadata and are ideal for loading into data analysis environments like R, Python (with pandas), or spreadsheet software.
+
+**Columns (TSV):**
 
 | Column | Header (Implied) | Description                                                  |
 |:------:|:-----------------|:-------------------------------------------------------------|
@@ -56,6 +62,21 @@ All `.tsv` files share a similar structure. The following 12 columns describe th
 | 11     | Identity         | Sequence identity (0.70-1.00 or 0.99-1.00).                  |
 | 12     | Similarity       | Sequence similarity (0.90-1.00).                             |
 
+### 2. **BED Format** (`/BED/` directory)
+
+This format is optimized for high-performance interval-based analysis with gold-standard tools like **`bedtools`** and for visualization in genome browsers (e.g., UCSC Genome Browser, IGV). It contains the core positional information in 6 columns.
+
+**Columns (BED):**
+1.  `chrom`: Chromosome
+2.  `chromStart`: Start position (0-based)
+3.  `chromEnd`: End position
+4.  `name`: A composite name (e.g., `L1HS_ORF1`)
+5.  `score`: Sequence identity, scaled to 0-1000
+6.  `strand`: Strand (+ or -)
+
+### 3. **GFF3 Format** (`/GFF3/` directory)
+
+This is a rich, standardized annotation format that preserves all the metadata from the original TSV files in a structured way. It is the most comprehensive format for integration with annotation software and advanced analysis pipelines. All metadata is stored in the 9th column (attributes).
 ---
 
 ## How to Download
