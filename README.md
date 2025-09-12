@@ -62,7 +62,7 @@ This is the original, full-detail data format. These tab-separated files contain
 | 11     | Identity         | Sequence identity (0.70-1.00 or 0.99-1.00).                  |
 | 12     | Similarity       | Sequence similarity (0.90-1.00).                             |
 
-### 2. **BED Format** (`/BED/` directory)
+### 2. **BED Format** (`/BED` directory)
 
 This format is optimized for high-performance interval-based analysis with gold-standard tools like **`bedtools`** and for visualization in genome browsers (e.g., UCSC Genome Browser, IGV). It contains the core positional information in 6 columns.
 
@@ -74,9 +74,10 @@ This format is optimized for high-performance interval-based analysis with gold-
 5.  `score`: Sequence identity, scaled to 0-1000
 6.  `strand`: Strand (+ or -)
 
-### 3. **GFF3 Format** (`/GFF3/` directory)
+### 3. **GFF3 Format** (`/GFF3` directory)
 
 This is a rich, standardized annotation format that preserves all the metadata from the original TSV files in a structured way. It is the most comprehensive format for integration with annotation software and advanced analysis pipelines. All metadata is stored in the 9th column (attributes).
+
 ---
 
 ## How to Download
