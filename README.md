@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 [![Citation](https://img.shields.io/badge/Publication-In%20Preparation-lightgrey)](https://doi.org/PAPER_DOI)
 
-This repository contains the official datasets for **L1Farm**, a comprehensive database of LINE-1 (L1) retrotransposon annotations. These datasets were generated as part of the study published in the *Journal of Genetics and Genomics*.
+This repository contains the official datasets for **L1Farm**, a comprehensive database of LINE-1 (L1) retrotransposon annotations.
 
 L1Farm provides high-resolution annotations of L1 elements across the human reference genome (hg38) and two individual diploid genomes, aiming to overcome the limitations of standard repeat annotation methods.
 
