@@ -11,7 +11,7 @@
 *   **Detailed Annotations:** Provides a complete analysis of 18 distinct L1 subfamilies.
 *   **Multi-Genome Coverage:** Includes annotations for the human reference genome (GRCh38/hg38) and, uniquely, for two individual diploid genomes (Asian and Caucasian).
 *   **High-Resolution Data:** All annotations are provided at both allele-level and nucleotide-level resolution.
-*   **Functional Ranking:** L1 elements are annotated with their precise genomic loci and ranked by their full-length content and similarity to consensus sequences, helping to identify potentially active elements.
+*   **Functional Ranking:** L1 elements are annotated with their precise genomic *loci* and ranked by their full-length content and similarity to consensus sequences, helping to identify potentially active elements.
 
 ---
 
