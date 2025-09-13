@@ -191,4 +191,4 @@ If you use the L1Farm database in your research, please cite our paper:
 
 ## License
 
-This data is distributed under the MIT License. See the `LICENSE.md` file for more details.
+This data is distributed under the permissive MIT License, which allows for free use, modification, and redistribution for both academic and commercial purposes.
