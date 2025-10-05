@@ -25,7 +25,7 @@ The L1Farm database is organized into 12 tab-separated value (`.tsv`) files. The
 
 #### 1. Dataset Type (`[Dataset]`)
 This indicates the type of annotation provided in the file:
--   **`RG-L1`**: **R**egions in **G**enome. Annotations of individual L1 regions (5'UTR, ORF1, intron, ORF2, 3'UTR) found in the **hg38 reference genome**.
+-   **`RG-L1`**: **R**egions in **G**enome. Annotations of individual L1 regions (5'UTR, ORF1, Spacer, ORF2, 3'UTR) found in the **hg38 reference genome**.
 -   **`FL-L1`**: **F**ull-**L**ength in **G**enome. Annotations of assembled, full-length L1 elements found in the **hg38 reference genome**.
 -   **`AR-L1`**: **A**llele-level **R**egions. Annotations of individual L1 regions found in **individual diploid genomes**.
 -   **`AF-L1`**: **A**llele-level **F**ull-length. Annotations of assembled, full-length L1 elements found in **individual diploid genomes**.
