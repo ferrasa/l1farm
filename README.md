@@ -1,7 +1,7 @@
 # L1Farm Database
 
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
-[![Citation](https://img.shields.io/badge/Publication-Human%20Gene-green)](https://doi.org/10.1016/j.humgen.2026.201529)
+[![Citation](https://img.shields.io/badge/Publication-Human%20Gene-darkgreen)](https://doi.org/10.1016/j.humgen.2026.201529)
 
 
 **L1Farm** is a comprehensive and complementary database for the annotation of LINE-1 (L1) retrotransposons. It was designed to provide a higher level of detail than standard repeat annotation tools.
